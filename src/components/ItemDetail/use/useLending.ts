@@ -1,26 +1,18 @@
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 
 const useLending = (): {
-  rent: () => void
-  borrowItem: () => void
-  returnItem: () => void
-  toggleOther: () => void
+  isOpenBorrowDialog: Ref<boolean>
+  toggleBorrowDialog: () => void
 } => {
-  const isOpenOther = ref(false)
+  const isOpenBorrowDialog = ref(false)
 
-  const rent = () => {
-    console.log('rent')
+  const toggleBorrowDialog = () => {
+    isOpenBorrowDialog.value = !isOpenBorrowDialog.value
   }
-  const borrowItem = () => {
-    console.log('borrowItem')
+  return {
+    isOpenBorrowDialog,
+    toggleBorrowDialog
   }
-  const returnItem = () => {
-    console.log('returnItem')
-  }
-  const toggleOther = () => {
-    console.log('toggleOther')
-  }
-  return { rent, borrowItem, returnItem, toggleOther }
 }
 
 export default useLending
